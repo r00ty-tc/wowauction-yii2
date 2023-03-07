@@ -16,7 +16,7 @@ $this->title = 'WoW Auction House Analysis';
 <div class="row">
     <div class="col text-center">
         <h1>Welcome to Web Auctioneer</h1>
-        <h3>A auction house analysis website for World Of Warcraft private servers</h3>
+        <h3>An auction house analysis website for World Of Warcraft private servers</h3>
     </div>
 </div>
 <div class="row">
@@ -31,7 +31,7 @@ $this->title = 'WoW Auction House Analysis';
             <li><b>*NEW*</b> Download Auctioneer scan data to WoW game folder</li>
             <li>Added a <a href="<?=Yii::$app->urlManager->createUrl("site/faq") ?>">FAQ</a></li>
         </ul>
-        <h3>If you have any suggestion or feedback please send a email to admin@web-auctioneer.com</h3>
+        <h3>If you have any suggestion or feedback please send a email to webauction@nerfed.net</h3>
     </div>
 </div>
 <br>

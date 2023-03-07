@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'enabled:boolean',
             'email_address:email',
 
-            ['class' => 'app\Components\CustomGridButtons'],
+            ['class' => 'app\components\CustomGridButtons'],
         ],
     ]); ?>
 </div>

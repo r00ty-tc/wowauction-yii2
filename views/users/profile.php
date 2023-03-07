@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
         <?php
-        echo \yii\bootstrap\Html::beginForm(["users/changepassword"]);
+        echo \yii\bootstrap4\Html::beginForm(["users/changepassword"]);
         ?>
         <div class="row">
             <div class="col">
@@ -40,13 +40,13 @@
     </div>
 </div>
 <?php
-echo \yii\bootstrap\Html::endForm();
+echo \yii\bootstrap4\Html::endForm();
 ?>
 <br><br>
 <?php
 $current_realm = \app\models\Realm::findOne(['id'=>Yii::$app->session->get("realm")]);
 $current_faction = \app\models\Factions::findOne(['id'=>Yii::$app->session->get("faction")]);
-echo \yii\bootstrap\Html::beginForm(["users/setrealmfaction"]);
+echo \yii\bootstrap4\Html::beginForm(["users/setrealmfaction"]);
 ?>
 
 <div class="card">
@@ -92,7 +92,7 @@ echo \yii\bootstrap\Html::beginForm(["users/setrealmfaction"]);
     </div>
 </div>
 <?php
-echo \yii\bootstrap\Html::endForm();
+echo \yii\bootstrap4\Html::endForm();
 ?>
 <script>
     function getrealms(o){

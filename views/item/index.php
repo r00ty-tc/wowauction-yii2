@@ -256,6 +256,7 @@ if($faction == null || $realm == null){
         $data['bid_mean']['data'][] = [$dt->getTimestamp(),$row->bid_mean/10000];
         $data['bid_median']['data'][] = [$dt->getTimestamp(),$row->bid_median/10000];
         $data['buyout_median']['data'][] = [$dt->getTimestamp(),$row->buyout_median/10000];
+        $data['buyout_min']['data'][] = [$dt->getTimestamp(),$row->buyout_min/10000];
         $total += $row->buyout_median/10000;
         $count++;
         $x = $row->cost_price/10000;
@@ -267,9 +268,10 @@ if($faction == null || $realm == null){
     ?>
     <h3>Price Chart</h3>
         <center>
-            <input class="checkboxes" type="checkbox" onclick="disable_enable(this,0)" checked="checked">Buyout
-            <input class="checkboxes" type="checkbox" onclick="disable_enable(this,1)" checked="checked">Bid
-            <input class="checkboxes" type="checkbox" onclick="disable_enable(this,2)" checked="checked">Cost Price
+            <input class="checkboxes" type="checkbox" onclick="disable_enable(this,0)" checked="checked">Buyout Median
+            <input class="checkboxes" type="checkbox" onclick="disable_enable(this,1)" checked="checked">Buyout Min
+            <input class="checkboxes" type="checkbox" onclick="disable_enable(this,2)" checked="checked">Bid
+            <input class="checkboxes" type="checkbox" onclick="disable_enable(this,3)" checked="checked">Cost Price
         </center>
     <div id="price_chart" style="width:100%; height:300px;">
     </div>
@@ -281,6 +283,7 @@ if($faction == null || $realm == null){
         var price_chart = null;
         var total_data = [
             {"label":"Median Buyout Price","data":all_data['buyout_median']['data'],"lines":{"show":true,"fill":true},"points":{show:true}},
+            {"label":"Minimum Buyout Price","data":all_data['buyout_min']['data'],"lines":{"show":true,"fill":true},"points":{show:true}},
             {"label":"Median Bid Price","data":all_data['bid_median']['data'],"lines":{"show":true,"fill":true},"points":{show:true}},
             {"label":"Cheapest Cost Price","data":all_data['cost_price']['data'],"lines":{"show":true,"fill":true},"points":{show:true}}
         ];

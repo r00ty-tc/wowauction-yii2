@@ -57,7 +57,6 @@ class PrivateApiController extends Controller
         if($realm == NULL){
             die("realm not found");
         }
-
         if(isset($_FILES['file']) && $_FILES['file']['tmp_name'] != ''){
 
             $fname = $realm->name."_".$faction."_aucdata";

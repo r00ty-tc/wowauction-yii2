@@ -80,7 +80,7 @@ AppAsset::register($this);
     <meta property="og:title" content="<?=Html::encode($this->title) ?>">
     <meta name="description" content="A website that analyzes the WoW Auction house on private servers, allows individual item price analysis with graphs.">
     <meta property="og:description" content="A website that analyzes the WoW Auction house on private servers, allows individual item price analysis with graphs.">
-    <meta name="keywords" content="WoW, World Of Warcraft,Auction House,World Of Warcraft Private servers, WoW Economy, WoW Private Servers">
+    <meta name="keywords" content="WoW, Auction House,Auctioneer,Auction Prices,Auction,Warmane,Lordaeron,Icecrown,Frostmourne,World Of Warcraft,World Of Warcraft Private servers, WoW Economy, WoW Private Servers">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>

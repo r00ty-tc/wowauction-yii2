@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'total_bid_gold',
             //'total_buyout_gold',
 
-            ['class' => 'app\Components\CustomGridButtons'],
+            ['class' => 'app\components\CustomGridButtons'],
         ],
     ]); ?>
 </div>

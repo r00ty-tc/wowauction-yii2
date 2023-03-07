@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
 
-            ['class' => 'app\Components\CustomGridButtons'],
+            ['class' => 'app\components\CustomGridButtons'],
         ],
     ]); ?>
 </div>

@@ -1,0 +1,26 @@
+#<FilesMatch scheduler\/$>
+#	Order deny,allow
+#	Deny from all
+#	Allow from 127.0.0.1
+#</FilesMatch>
+
+# Secure the private stuff by IP
+# Change 1.2.3.4 to your IP you want to access the private URIs. Add extra lines if needed
+RewriteEngine on
+RewriteCond %{REMOTE_ADDR} !^1.2.3.4$
+RewriteCond %{REQUEST_URI} ^/scheduler
+RewriteRule .* - [F,L]
+
+RewriteEngine on
+RewriteCond %{REMOTE_ADDR} !^1.2.3.4$
+RewriteCond %{REQUEST_URI} ^/private-api
+RewriteRule .* - [F,L]
+
+# If a directory or a file exists, use it directly
+RewriteCond %{REQUEST_URI} !^/images
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Otherwise forward it to index.php
+RewriteRule . index.php
+
+

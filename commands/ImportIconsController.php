@@ -10,7 +10,7 @@ namespace app\commands;
 
 
 use app\models\ItemDisplayInfo;
-use yii\Console\Controller;
+use yii\console\Controller;
 use yii\console\ExitCode;
 
 class ImportIconsController extends Controller
@@ -44,15 +44,17 @@ class ImportIconsController extends Controller
         $contents = file_get_contents($file);
         $lines=  $this->parse_csv($contents);
         for($i=0; $i < count($lines); $i++){
-            $id = $lines[$i][0];
-            $icon_str = $lines[$i][5];
-            $test = ItemDisplayInfo::findOne(['id'=>$id]);
-            echo "imported ".$id. " " .$icon_str."\n";
-            if($test == NULL){
-                $icon = new ItemDisplayInfo();
-                $icon->id= $id;
-                $icon->icon_name = $icon_str;
-                $icon->save();
+            if(count($lines[$i]) > 5) {
+                $id = $lines[$i][0];
+                $icon_str = $lines[$i][5];
+                $test = ItemDisplayInfo::findOne(['id'=>$id]);
+                echo "imported ".$id. " " .$icon_str."\n";
+                if($test == NULL){
+                    $icon = new ItemDisplayInfo();
+                    $icon->id= $id;
+                    $icon->icon_name = $icon_str;
+                    $icon->save();
+                }
             }
         }
     }

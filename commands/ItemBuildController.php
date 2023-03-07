@@ -332,7 +332,7 @@ class ItemBuildController extends Controller
                     $ib = new ItemBuild();
                     $ib->result_itemid = $item->item;
                     $ib->required_itemid = 0;
-                    $ib->quantity = $item_qtys[$c];
+                    $ib->quantity = 0;
                     $ib->source_type = 'vendor';
                     $ib->source_id = $item->entry;
                     $ib->save();
