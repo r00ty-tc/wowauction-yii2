@@ -18,7 +18,7 @@ class DiscordBotSettingsSearch extends DiscordBotSettings
     public function rules()
     {
         return [
-            [['serverid', 'setting_name', 'value'], 'safe'],
+            [['serverid', 'channelid' 'setting_name', 'value'], 'safe'],
         ];
     }
 
@@ -58,6 +58,7 @@ class DiscordBotSettingsSearch extends DiscordBotSettings
 
         // grid filtering conditions
         $query->andFilterWhere(['like', 'serverid', $this->serverid])
+            ->andFilterWhere(['like', 'channelid', $this->channelid])
             ->andFilterWhere(['like', 'setting_name', $this->setting_name])
             ->andFilterWhere(['like', 'value', $this->value]);
 

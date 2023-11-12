@@ -123,6 +123,31 @@ class PrivateApiController extends Controller
         }
         return json_encode(['result'=>'OK','name'=>$realm->name]);
     }
+    public function actionSetchannelrealm(){
+        $gid = \Yii::$app->request->get("gid");
+        $cid = \Yii::$app->request->get("cid");
+
+        $realmid = \Yii::$app->request->get("realmid");
+        $realm = Realm::findOne(['id'=>$realmid]);
+        if($realm == null) {
+            $realm = Realm::findOne(['name'=>$realmid]);
+        }
+        if($realm == NULL){
+            return json_encode(['result'=>'error','message'=>'Realm not found!']);
+        }
+        $setting = DiscordBotSettings::findOne(['serverid'=>$gid,'channelid'=>$cid,'setting_name'=>'realm_id']);
+        if($setting == null){
+            $setting = new DiscordBotSettings();
+            $setting->serverid = $gid;
+	    $setting->channelid = $cid;
+            $setting->setting_name = 'realm_id';
+        }
+        $setting->value = (string)$realm->id;
+        if(!$setting->save()){
+            print_r($setting->getErrors());
+        }
+        return json_encode(['result'=>'OK','name'=>$realm->name]);
+    }
     public function actionSetfaction(){
         $gid = \Yii::$app->request->get("gid");
         $faction = \Yii::$app->request->get("faction");
@@ -144,10 +169,40 @@ class PrivateApiController extends Controller
         }
         return json_encode(['result'=>'OK','name'=>$facrow->name]);
     }
+    public function actionSetchannelfaction(){
+        $gid = \Yii::$app->request->get("gid");
+        $cid = \Yii::$app->request->get("cid");
+        $faction = \Yii::$app->request->get("faction");
+        $faction = strtolower($faction);
+        $facid = ($faction == 'h'?'1':'2');
+        $facrow = Factions::findOne(['id'=>$facid]);
+        if($facrow == NULL){
+            return json_encode(['result'=>'error','message'=>'Faction Not Found']);
+        }
+        $setting = DiscordBotSettings::findOne(['serverid'=>$gid,'channelid'=>$cid,'setting_name'=>'faction']);
+        if($setting == null){
+            $setting = new DiscordBotSettings();
+	    $setting->serverid = $gid;
+	    $setting->channelid = $cid;
+            $setting->setting_name = 'faction';
+        }
+        $setting->value = $facid;
+        if(!$setting->save()){
+            print_r($setting->getErrors());
+        }
+        return json_encode(['result'=>'OK','name'=>$facrow->name]);
+    }
     public function actionGetAhPrice(){
         $name = \Yii::$app->request->get("name");
         $gid = \Yii::$app->request->get("gid");
-        $settings = DiscordBotSettings::findOne(['serverid'=>$gid,'setting_name'=>'realm_id']);
+	$cid = \Yii::$app->request->get("cid");
+	$settings = DiscordBotSettings::findOne(['serverid'=>$gid,'setting_name'=>'realm_id']);
+	if ($cid != null){
+		$chan_settings = DiscordBotSettings::findOne(['serverid'=>$gid,'channelid'=>$cid,'setting_name'=>'realm_id']);
+		if ($chan_settings != null) {
+			$settings = $chan_settings;
+		}
+	}
         if(strlen($name) < 3){
             return json_encode(['result'=>'error','message'=>'Umm the item name is too short please atleast type 3 characters']);
         }
@@ -161,7 +216,13 @@ class PrivateApiController extends Controller
         }
         $settings = null;
 
-        $settings = DiscordBotSettings::findOne(['serverid'=>$gid,'setting_name'=>'faction']);
+	$settings = DiscordBotSettings::findOne(['serverid'=>$gid,'setting_name'=>'faction']);
+	if ($cid != null){
+		$chan_settings = DiscordBotSettings::findOne(['serverid'=>$gid,'channelid'=>$cid,'setting_name'=>'faction']);
+		if ($chan_settings != null) {
+			$settings = $chan_settings;
+		}
+	}
         if($settings == NULL){
             return json_encode(['result'=>'error','message'=>'Faction Not Set For this Guild']);
         }

@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "discord_bot_settings".
  *
  * @property string $serverid
+ * @property string $channelid
  * @property string $setting_name
  * @property string $value
  */
@@ -30,6 +31,7 @@ class DiscordBotSettings extends \yii\db\ActiveRecord
             [['setting_name','serverid'], 'required'],
             [['value'], 'string'],
             [['serverid'], 'string', 'max' => 50],
+            [['channelid'], 'string', 'max' => 50],
             [['setting_name'], 'string', 'max' => 60],
         ];
     }
@@ -41,6 +43,7 @@ class DiscordBotSettings extends \yii\db\ActiveRecord
     {
         return [
             'serverid' => 'Serverid',
+            'channelid' => 'Channelid',
             'setting_name' => 'Setting Name',
             'value' => 'Value',
         ];

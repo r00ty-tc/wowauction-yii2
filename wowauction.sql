@@ -215,9 +215,10 @@ DROP TABLE IF EXISTS `discord_bot_settings`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `discord_bot_settings` (
   `serverid` varchar(50) NOT NULL DEFAULT '',
+  `channelid` varchar(50) NOT NULL DEFAULT '',
   `setting_name` varchar(60) NOT NULL,
   `value` text,
-  PRIMARY KEY (`serverid`,`setting_name`)
+  PRIMARY KEY (`serverid`,`channelid`,`setting_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
