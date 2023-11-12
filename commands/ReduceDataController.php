@@ -13,10 +13,10 @@ class ReduceDataController extends Controller
     public function actionIndex($fromdate = "", $todate = "")
     {
         if($fromdate == "")
-            $fromdate = date('Y-m-01');
+            $fromdate = date('Y-m-d', strtotime("-2 months"));
         if($todate == "")
-            $todate = date('Y-m-d');
-        echo "Reducing data from $fromdate to $todate \n";
+            $todate = date('Y-m-d', strtotime("-1 months"));
+	echo "Reducing data from $fromdate to $todate \n";
         $fdate = new \DateTime($fromdate);
         $tdate = new \DateTime(($todate));
         $diff = $fdate->diff($tdate);

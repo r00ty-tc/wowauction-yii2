@@ -116,9 +116,13 @@ class SiteController extends Controller
             $price_row = $item->itemprice;
 
             $row = "<tr><td>".Yii::$app->wowutil->printItem($item->entry)."</td>";
-            $row .= "<td>".Yii::$app->wowutil->printCurrency($item->SellPrice)."</td>";
-            $row .= "<td>".$item->itemclass->name."</td>";
-            $row .= "<td>".$item->itemsubclass->name."</td>";
+	    $row .= "<td>".Yii::$app->wowutil->printCurrency($item->SellPrice)."</td>";
+	    if($item->itemclass != null) {
+		    $row .= "<td>".$item->itemclass->name."</td>";
+	    }
+	    if($item->itemsubclass != null) {
+		    $row .= "<td>".$item->itemsubclass->name."</td>";
+	    }
             $row .= "<td>".$item->RequiredLevel."</td>";
             $row .= "<td>".$item->ItemLevel."</td>";
             if($price_row != null) {

@@ -75,7 +75,7 @@ class PrivateApiController extends Controller
             die("OK");
         }
         else {
-            die("ERROR IN FILE UPLOAD");
+            die("ERROR IN FILE UPLOAD ".json_encode($_FILES));
         }
     }
     public function actionGetrealmdata(){
