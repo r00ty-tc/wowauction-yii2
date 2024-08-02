@@ -54,14 +54,13 @@ class TsmApiController extends Controller
 	}
 
 	$connection = \Yii::$app->getDb();
-	$command = $connection->createCommand("SELECT DISTINCT(datetime) FROM item_prices WHERE realm_id = :realmid AND faction_id = :factionid AND datetime > from_unixtime(:lastscan) ORDER BY datetime", [':realmid' => $realm->id,':factionid' => $faction->id,':lastscan' => $lastScan]);
+	$command = $connection->createCommand("SELECT DISTINCT(UNIX_TIMESTAMP(datetime)) AS datetime FROM item_prices WHERE realm_id = :realmid AND faction_id = :factionid AND datetime > from_unixtime(:lastscan) ORDER BY datetime", [':realmid' => $realm->id,':factionid' => $faction->id,':lastscan' => $lastScan]);
 	$result = [];
 	$result['scans'] = [];
 	$queryResult = $command->queryAll();
 	foreach ($queryResult as $scan) {
             $scanItem = [];
-            $dt = new \DateTime($scan['datetime']);
-	    $scanItem['scantime'] = $dt->getTimestamp();
+	        $scanItem['scantime'] = $scan['datetime'];
             $result['scans'][] = $scanItem;
 	}
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -98,10 +97,9 @@ class TsmApiController extends Controller
 
 	    if ($scantime == 0){
             $connection = \Yii::$app->getDb();
-	        $command = $connection->createCommand("SELECT datetime FROM item_prices WHERE realm_id = :realmid  AND faction_id = :factionid ORDER BY datetime DESC LIMIT 1", [':realmid' => $realm->id,':factionid' => $faction->id]);
+	        $command = $connection->createCommand("SELECT UNIX_TIMESTAMP(datetime) AS datetime FROM item_prices WHERE realm_id = :realmid  AND faction_id = :factionid ORDER BY datetime DESC LIMIT 1", [':realmid' => $realm->id,':factionid' => $faction->id]);
 	        $queryResult = $command->queryOne();
-	        $dt = new \DateTime($queryResult['datetime']);
-	        $scantime = $dt->getTimestamp();
+	        $scantime = $queryResult['datetime'];
 	    }
         $qry = "select * from item_prices where realm_id=:realm and faction_id=:faction and `datetime`=from_unixtime(:scantime) group by itemid";
         $ip = ItemPrices::findBySql($qry,[':realm'=>$realm->id,':faction'=>$faction->id,':scantime'=>$scantime])->all();
