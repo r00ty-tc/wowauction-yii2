@@ -2,7 +2,7 @@
 <hr>
 <br>
 <div class="text-centered" style="font-size:16px; text-align: center; width:100%">
-    >>> <a href="https://discord.com/api/oauth2/authorize?client_id=1076842909078405191&permissions=0&scope=bot%20applications.commands">Click here to invite the bot to your server</a> <<<
+    >>> <a href="https://discord.com/api/oauth2/authorize?client_id=1076842909078405191&permissions=262144&scope=bot%20applications.commands">Click here to invite the bot to your server</a> <<<
 </div>
 <h2>Instruction On How To Use</h2>
 <ol style="font-size:18px;">
