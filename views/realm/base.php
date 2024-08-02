@@ -127,7 +127,7 @@ $this->title = $realm->name." ".$realm->server->name;
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="all">
                             <?php
-                            $max_dt = \app\models\ItemPrices::findBySql("SELECT max(datetime) from item_prices where realm_id='".$realm->id."' and faction_id='".$selected_faction->id."';")->scalar();
+                            $max_dt = \app\models\ItemPrices::findBySql("SELECT datetime FROM item_prices WHERE realm_id='".$realm->id."' AND faction_id='".$selected_faction->id."' ORDER BY datetime DESC LIMIT 1;")->scalar();
                             $scansearch = new \app\models\ItemPricesSearch();
                             $scansearch->faction_id = $selected_faction->id;
                             $scansearch->realm_id = $realm->id;

@@ -425,7 +425,8 @@ CREATE TABLE `item_prices` (
   KEY `item_prices_faction_id` (`faction_id`),
   KEY `item_prices_datetime` (`datetime`),
   KEY `item_prices_itemid` (`itemid`),
-  KEY `item_prices_buyout_median` (`buyout_median`)
+  KEY `item_prices_buyout_median` (`buyout_median`),
+  INDEX `item_prices_datetime_desc` (`realm_id`, `faction_id`, `datetime` DESC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -458,7 +459,8 @@ CREATE TABLE `item_prices_old` (
   KEY `item_prices_faction_id` (`faction_id`),
   KEY `item_prices_datetime` (`datetime`),
   KEY `item_prices_itemid` (`itemid`),
-  KEY `item_prices_buyout_median` (`buyout_median`)
+  KEY `item_prices_buyout_median` (`buyout_median`),
+  INDEX `item_prices_datetime_desc` (`realm_id`, `faction_id`, `datetime` DESC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
